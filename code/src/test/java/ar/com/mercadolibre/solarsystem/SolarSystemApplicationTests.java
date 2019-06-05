@@ -1,4 +1,4 @@
-package ar.com.mercado.libre.solarsystem.solarsystem;
+package ar.com.mercadolibre.solarsystem;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
