@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 import static java.lang.String.format;
 import static org.junit.Assert.assertEquals;
@@ -18,9 +17,9 @@ public class PointUtilsTest {
     @Test
     public void whenRadiusIsZeroThenReturnZeroZeroPoint() {
         int radius = 0;
-        Point2D pointZeroZero = new Point.Float(0, 0);
-        Point2D result1 = PointUtils.pointTo(radius, 0);
-        Point2D result2 = PointUtils.pointTo(radius, 100);
+        Point pointZeroZero = new Point(0, 0);
+        Point result1 = PointUtils.pointTo(radius, 0);
+        Point result2 = PointUtils.pointTo(radius, 100);
         assertEquals(getAssertMessage(0, radius, "(0,0)"), pointZeroZero, result1);
         assertEquals(getAssertMessage(100, radius, "(0,0)"), pointZeroZero, result2);
     }
@@ -28,8 +27,8 @@ public class PointUtilsTest {
     @Test
     public void whenDegreesIsZeroThenReturnYaxisIsZero() {
         int degrees = 0;
-        Point2D result1 = PointUtils.pointTo(50, degrees);
-        Point2D result2 = PointUtils.pointTo(100, degrees);
+        Point result1 = PointUtils.pointTo(50, degrees);
+        Point result2 = PointUtils.pointTo(100, degrees);
         assertEquals(getAssertMessage(degrees, 50, "(50,0)"), new Point(50, 0), result1);
         assertEquals(getAssertMessage(degrees, 100, "(100,0)"), new Point(100, 0), result2);
     }
@@ -38,7 +37,7 @@ public class PointUtilsTest {
     public void whenDegreesIs90AndRadiusIsNotZeroThenReturnYaxisIsNotZero() {
         int radius = 150;
         int degrees = 90;
-        Point2D result = PointUtils.pointTo(radius, degrees);
+        Point result = PointUtils.pointTo(radius, degrees);
         assertEquals(getAssertMessage(degrees, radius, "(0,150)"), new Point(0, 150), result);
     }
 
@@ -46,8 +45,8 @@ public class PointUtilsTest {
     public void whenDegreesAndRadiusIsNotZeroThenReturnYaxisAndXaxisIsNotZero() {
         int radius = 200;
         int degrees = 120;
-        Point2D expected = new Point.Float(-100, 173.21f);
-        Point2D result = PointUtils.pointTo(radius, degrees);
+        Point expected = new Point(-100, 173);
+        Point result = PointUtils.pointTo(radius, degrees);
         assertEquals(getAssertMessage(degrees, radius, expected.toString()), expected, result);
     }
 
@@ -55,8 +54,8 @@ public class PointUtilsTest {
     public void whenDegreesIsGreaterThat360ThenReturnIsOK() {
         int radius = 200;
         int degrees = 120 + 360;
-        Point2D expected = PointUtils.pointTo(radius, 120);
-        Point2D result = PointUtils.pointTo(radius, degrees);
+        Point expected = PointUtils.pointTo(radius, 120);
+        Point result = PointUtils.pointTo(radius, degrees);
         assertEquals(getAssertMessage(degrees, radius, expected.toString()), expected, result);
     }
 
@@ -64,8 +63,8 @@ public class PointUtilsTest {
     public void whenDegreesIsLessThat0ThenReturnIsOK() {
         int radius = 200;
         int degrees = 120 - 360;
-        Point2D expected = PointUtils.pointTo(radius, 120);
-        Point2D result = PointUtils.pointTo(radius, degrees);
+        Point expected = PointUtils.pointTo(radius, 120);
+        Point result = PointUtils.pointTo(radius, degrees);
         assertEquals(getAssertMessage(degrees, radius, expected.toString()), expected, result);
     }
 
@@ -73,8 +72,8 @@ public class PointUtilsTest {
     public void whenRadiousIsNegativeThenReturnIsOK() {
         int radius = -200;
         int degrees = 120 - 360;
-        Point2D expected = PointUtils.pointTo(200, 120);
-        Point2D result = PointUtils.pointTo(radius, degrees);
+        Point expected = PointUtils.pointTo(200, 120);
+        Point result = PointUtils.pointTo(radius, degrees);
         assertEquals(getAssertMessage(degrees, radius, expected.toString()), expected, result);
     }
 

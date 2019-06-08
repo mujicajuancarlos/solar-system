@@ -2,50 +2,44 @@ package ar.com.mercadolibre.solarsystem.utils;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.math.BigDecimal;
 import java.util.List;
 
 import static java.lang.Math.*;
-import static java.math.RoundingMode.HALF_UP;
 import static org.springframework.util.Assert.isTrue;
 import static org.springframework.util.Assert.notNull;
 
 public class PointUtils {
-
-    private static final int SCALE = 2;
 
     /**
      * Calcula las coordenadas cartecianas respecto al punto (0,0)
      *
      * @param radius  es un numero positivo y representa la distancia desde el punto (0,0)
      * @param degrees es un numero positivo o negativo que representa el angulo desde el eje de abscisas (eje x+)
-     * @return @{@link Point.Float} con una precision decimal de {@value #SCALE}
+     * @return @{@link Point} donde las coordenadas X, Y son numeros enteros
      */
-    public static Point2D pointTo(int radius, int degrees) {
+    public static Point pointTo(int radius, int degrees) {
         double angle = toRadians(degrees);
-        float pointX = round(abs(radius) * cos(angle));
-        float pointY = round(abs(radius) * sin(angle));
-        return new Point.Float(pointX, pointY);
+        int distance = abs(radius);
+        int pointX = (int) round(distance * cos(angle));
+        int pointY = (int) round(distance * sin(angle));
+        return new Point(pointX, pointY);
     }
 
-    public static boolean polygonContains(Point2D point, List<Point2D> points) {
-        notNull(point, "point can not be null");
-        isTrue(points != null && points.size() > 2, "points can not be null and size greater that 2");
-        FloatPolygon polygon = new FloatPolygon();
-        points.forEach(vertex -> polygon.addPoint(vertex.getX(), vertex.getY()));
+    public static boolean polygonContainsPoint(Point point, List<Point> points) {
+        notNull(point, "Point must not be null!");
+        notNull(points, "Points must not be null!");
+        isTrue(points.size() > 2, "Points must not be less or equals than two");
+        Polygon polygon = new Polygon();
+        points.forEach(vertex -> polygon.addPoint(vertex.x, vertex.y));
         return polygon.contains(point.getX(), point.getY());
     }
 
-    public static boolean ruleContains(List<Point2D> points) {
-        isTrue(points != null && points.size() > 1, "points can not be null and size greater that 1");
+    public static boolean allPointsOnLine(List<Point2D> points) {
+        notNull(points, "Points must not be null!");
+        isTrue(points.size() >= 2, "Points must be less than one");
+        if (points.size() == 2) {
+            return true;
+        }
         return false;
-    }
-
-    /**
-     * @param value
-     * @return float redondeado con {@value #SCALE} decimales
-     */
-    private static float round(double value) {
-        return new BigDecimal(value).setScale(SCALE, HALF_UP).floatValue();
     }
 }
