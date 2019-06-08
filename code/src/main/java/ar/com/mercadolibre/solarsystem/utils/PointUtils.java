@@ -25,6 +25,15 @@ public class PointUtils {
         return new Point(pointX, pointY);
     }
 
+    /**
+     * Esta funcionalidad retorna true cuando el punto se encuentra dentro del poligono formado por los otros puntos y
+     * falso en otro caso
+     * Ninguno de los parametros puede ser @null
+     *
+     * @param point  es una instancia de @{@link Point}
+     * @param points es una lista de @{@link List<Point>} con almenos 3 elementos, forman un poligono
+     * @return true si el punto point se encuentra dentro del poligono formado por la lista de puntos
+     */
     public static boolean polygonContainsPoint(Point point, List<Point> points) {
         notNull(point, "Point must not be null!");
         notNull(points, "Points must not be null!");
@@ -34,6 +43,14 @@ public class PointUtils {
         return polygon.contains(point);
     }
 
+    /**
+     * Esta funcionalidad verifica que todos los puntos de la lista points se encuentren alineados en la misma recta.
+     * Retorna true si todos los puntos estan alineados y false cuando almenos un punto no esta alineado
+     * Ninguno de los parametros puede ser @null
+     *
+     * @param points es una lista de @{@link List<Point>} con almenos 2 elementos
+     * @return true si todos pertenecen a la misma recta
+     */
     public static boolean allPointsOnLine(List<Point> points) {
         notNull(points, "Points must not be null!");
         isTrue(points.size() >= 2, "Points must be less than one");
