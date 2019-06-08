@@ -1,7 +1,7 @@
 package ar.com.mercadolibre.solarsystem.utils;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
+import java.awt.geom.Line2D;
 import java.util.List;
 
 import static java.lang.Math.*;
@@ -34,12 +34,14 @@ public class PointUtils {
         return polygon.contains(point);
     }
 
-    public static boolean allPointsOnLine(List<Point2D> points) {
+    public static boolean allPointsOnLine(List<Point> points) {
         notNull(points, "Points must not be null!");
         isTrue(points.size() >= 2, "Points must be less than one");
         if (points.size() == 2) {
             return true;
         }
-        return false;
+        Line2D line = new Line2D.Float(points.get(0), points.get(1));
+        return points.stream().skip(2)
+                .allMatch(point -> line.ptLineDist(point) == 0.0);
     }
 }

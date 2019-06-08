@@ -129,6 +129,48 @@ public class PointUtilsTest {
         assertTrue(PointUtils.polygonContainsPoint(point3, polygonPoints));
     }
 
+    @Test
+    public void whenAllPointsInsideThenReturnTrue() {
+        List<Point> points1 = asList(new Point(2, 1), new Point(0, 1), new Point(1, 1));
+        List<Point> points2 = asList(new Point(-1, -1), new Point(0, 0), new Point(1, 1));
+        List<Point> points3 = asList(new Point(-5, 1), new Point(-5, -5), new Point(-5, -2));
+        assertTrue(PointUtils.allPointsOnLine(points1));
+        assertTrue(PointUtils.allPointsOnLine(points2));
+        assertTrue(PointUtils.allPointsOnLine(points3));
+    }
+
+    @Test
+    public void whenTwoPointsThenReturnTrue() {
+        List<Point> points1 = asList(new Point(2, 1), new Point(0, 500));
+        assertTrue(PointUtils.allPointsOnLine(points1));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenSizePointsIsOneThenThrowException() {
+        List<Point> points1 = asList(new Point(2, 1));
+        assertTrue(PointUtils.allPointsOnLine(points1));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenPointsIsEmptyThenThrowException() {
+        assertTrue(PointUtils.allPointsOnLine(emptyList()));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenPointsIsNullThenThrowException() {
+        assertTrue(PointUtils.allPointsOnLine(null));
+    }
+
+    @Test
+    public void whenAnyPointNotInsideThenReturnFalse() {
+        List<Point> points1 = asList(new Point(2, 1), new Point(0, 1), new Point(1, 2));
+        List<Point> points2 = asList(new Point(-1, -1), new Point(0, 0), new Point(1, 2));
+        List<Point> points3 = asList(new Point(-4, 2), new Point(-5, -5), new Point(-5, -2));
+        assertFalse(PointUtils.allPointsOnLine(points1));
+        assertFalse(PointUtils.allPointsOnLine(points2));
+        assertFalse(PointUtils.allPointsOnLine(points3));
+    }
+
     private String getAssertMessage(int degrees, int radius, String expectedPoint) {
         return format(DEFAULT_MESSAGE, degrees, radius, expectedPoint);
     }
