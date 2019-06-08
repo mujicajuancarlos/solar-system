@@ -31,7 +31,7 @@ public class PointUtils {
         isTrue(points.size() > 2, "Points must not be less or equals than two");
         Polygon polygon = new Polygon();
         points.forEach(vertex -> polygon.addPoint(vertex.x, vertex.y));
-        return polygon.contains(point.getX(), point.getY());
+        return polygon.contains(point);
     }
 
     public static boolean allPointsOnLine(List<Point2D> points) {

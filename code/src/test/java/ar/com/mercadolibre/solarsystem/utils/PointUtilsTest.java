@@ -5,9 +5,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.awt.*;
+import java.util.List;
 
 import static java.lang.String.format;
-import static org.junit.Assert.assertEquals;
+import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
+import static org.junit.Assert.*;
 
 @RunWith(JUnit4.class)
 public class PointUtilsTest {
@@ -75,6 +78,55 @@ public class PointUtilsTest {
         Point expected = PointUtils.pointTo(200, 120);
         Point result = PointUtils.pointTo(radius, degrees);
         assertEquals(getAssertMessage(degrees, radius, expected.toString()), expected, result);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenPolygonContainsNullPointIsNullThenThrowException() {
+        PointUtils.polygonContainsPoint(null, emptyList());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenNullPolygonContainsPointThenThrowException() {
+        PointUtils.polygonContainsPoint(new Point(), null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenMissingPointsThenThrowException() {
+        Point point = new Point();
+        PointUtils.polygonContainsPoint(point, asList(point, point));
+    }
+
+    @Test
+    public void whenPointInsideThenReturnTrue() {
+        Point point1 = new Point(0, 0);
+        Point point2 = new Point(0, 8);
+        Point point3 = new Point(2, -1);
+        List<Point> polygonPoints = asList(new Point(-3, -3), new Point(6, 0), new Point(-1, 10));
+        assertTrue(PointUtils.polygonContainsPoint(point1, polygonPoints));
+        assertTrue(PointUtils.polygonContainsPoint(point2, polygonPoints));
+        assertTrue(PointUtils.polygonContainsPoint(point3, polygonPoints));
+    }
+
+    @Test
+    public void whenPointNotInsideThenReturnFalse() {
+        Point point1 = new Point(-1, 0);
+        Point point2 = new Point(1, -1);
+        Point point3 = new Point(0, 2);
+        List<Point> polygonPoints = asList(new Point(-1, -1), new Point(1, 0), new Point(0, 1));
+        assertFalse(PointUtils.polygonContainsPoint(point1, polygonPoints));
+        assertFalse(PointUtils.polygonContainsPoint(point2, polygonPoints));
+        assertFalse(PointUtils.polygonContainsPoint(point3, polygonPoints));
+    }
+
+    @Test
+    public void whenLimitPointThenReturnTrue() {
+        Point point1 = new Point(-1, 0);
+        Point point2 = new Point(-1, -1);
+        Point point3 = new Point(0, -1);
+        List<Point> polygonPoints = asList(new Point(-1, -1), new Point(-1, 1), new Point(1, 1), new Point(1, -1));
+        assertTrue(PointUtils.polygonContainsPoint(point1, polygonPoints));
+        assertTrue(PointUtils.polygonContainsPoint(point2, polygonPoints));
+        assertTrue(PointUtils.polygonContainsPoint(point3, polygonPoints));
     }
 
     private String getAssertMessage(int degrees, int radius, String expectedPoint) {
