@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SolarSystemApplication {
+public class SolarSystemTestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SolarSystemApplication.class, args);
+		SpringApplication.run(SolarSystemTestApplication.class, args);
 	}
 
 }
