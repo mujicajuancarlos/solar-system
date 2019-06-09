@@ -51,7 +51,7 @@ public class PointUtils {
      * @param points es una lista de @{@link List<Point>} con almenos 2 elementos
      * @return true si todos pertenecen a la misma recta
      */
-    public static boolean allPointsOnLine(List<Point> points) {
+    public static boolean allPointsInLine(List<Point> points) {
         notNull(points, "Points must not be null!");
         isTrue(points.size() >= 2, "Points must be less than one");
         if (points.size() == 2) {

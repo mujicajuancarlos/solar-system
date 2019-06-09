@@ -3,6 +3,7 @@ package ar.com.mercadolibre.solarsystem.model;
 import ar.com.mercadolibre.solarsystem.utils.PointUtils;
 
 import java.awt.*;
+import java.util.Objects;
 
 import static org.springframework.util.Assert.isTrue;
 
@@ -31,5 +32,18 @@ public class Planet {
         isTrue(day >= 0, "Day must not be less or equals than zero");
         int angle = (day * velocity) % 360;
         return PointUtils.pointTo(distance, angle + INITIAL_ANGLE);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Planet planet = (Planet) o;
+        return Objects.equals(name, planet.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
