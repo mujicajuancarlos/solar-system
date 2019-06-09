@@ -10,9 +10,9 @@ public class Planet {
 
     public static final int INITIAL_ANGLE = 0;
 
-    private String name;
-    private int velocity;
-    private int distance;
+    private final String name;
+    private final int velocity;
+    private final int distance;
 
     public Planet(String name, int velocity, int distance) {
         this.name = name;
