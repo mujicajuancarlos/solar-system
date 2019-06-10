@@ -13,6 +13,61 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/code/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/code/src/main/appengine/app.yaml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/code/src/main/java/ar/com/mercadolibre/solarsystem/SolarSystemApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/code/src/main/java/ar/com/mercadolibre/solarsystem/configuration/AppConfiguration.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/code/src/main/java/ar/com/mercadolibre/solarsystem/controller/WeatherController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/code/src/main/java/ar/com/mercadolibre/solarsystem/controller/mapper/WeatherMapper.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/code/src/main/java/ar/com/mercadolibre/solarsystem/dto/WeatherStatisticsDTO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/code/src/main/java/ar/com/mercadolibre/solarsystem/service/WeatherService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/code/src/main/java/ar/com/mercadolibre/solarsystem/service/impl/DefaultWeatherService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/code/src/main/resources/data.sql">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/code/src/main/resources/spring-cloud-bootstrap.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
       </map>
     </option>
   </component>

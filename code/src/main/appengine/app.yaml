@@ -1,4 +1,3 @@
-x-google-allow: all
 runtime: java
 env: flex
 runtime_config:
@@ -10,3 +9,5 @@ handlers:
     script: this field is required, but ignored
 manual_scaling:
   instances: 1
+readiness_check:
+  app_start_timeout_sec: 500
