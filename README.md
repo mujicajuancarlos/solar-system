@@ -1,5 +1,10 @@
 # Sistema Solar 
 [![Build Status](https://travis-ci.com/mujicajuancarlos/solar-system.svg?branch=develop)](https://travis-ci.com/mujicajuancarlos/solar-system)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=mujicajuancarlos_solar-system&metric=bugs)](https://sonarcloud.io/dashboard?id=mujicajuancarlos_solar-system)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=mujicajuancarlos_solar-system&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=mujicajuancarlos_solar-system)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mujicajuancarlos_solar-system&metric=alert_status)](https://sonarcloud.io/dashboard?id=mujicajuancarlos_solar-system)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mujicajuancarlos_solar-system&metric=security_rating)](https://sonarcloud.io/dashboard?id=mujicajuancarlos_solar-system)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=mujicajuancarlos_solar-system&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=mujicajuancarlos_solar-system)
 
 _Sistema informático que permite dominar la predicción del clima de una galaxia lejana._
 
