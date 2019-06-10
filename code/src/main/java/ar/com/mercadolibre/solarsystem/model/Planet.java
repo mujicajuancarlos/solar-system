@@ -11,11 +11,16 @@ public class Planet {
 
     public static final int INITIAL_ANGLE = 0;
 
-    private final String name;
-    private final int velocity;
-    private final int distance;
+    private String name;
+    private int velocity;
+    private int distance;
+
+    public Planet() {
+        super();
+    }
 
     public Planet(String name, int velocity, int distance) {
+        this();
         this.name = name;
         this.velocity = velocity;
         this.distance = distance;
@@ -34,6 +39,30 @@ public class Planet {
         return PointUtils.pointTo(distance, angle + INITIAL_ANGLE);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,5 +74,14 @@ public class Planet {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Planet{" +
+                "name='" + name + '\'' +
+                ", velocity=" + velocity +
+                ", distance=" + distance +
+                '}';
     }
 }

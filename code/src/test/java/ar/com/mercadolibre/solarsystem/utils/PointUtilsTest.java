@@ -171,6 +171,16 @@ public class PointUtilsTest {
         assertFalse(PointUtils.allPointsInLine(points3));
     }
 
+    @Test
+    public void testPerimeter() {
+        Point point1 = new Point(-2, 0);
+        Point point2 = new Point(-2, 1);
+        Point point3 = new Point(1, 1);
+        Point point4 = new Point(1, 0);
+        List<Point> points = asList(point1, point2, point3, point4);
+        assertEquals(8.0, PointUtils.perimeter(points), 0.0);
+    }
+
     private String getAssertMessage(int degrees, int radius, String expectedPoint) {
         return format(DEFAULT_MESSAGE, degrees, radius, expectedPoint);
     }

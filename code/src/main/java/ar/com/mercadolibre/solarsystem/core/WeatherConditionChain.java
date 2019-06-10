@@ -32,4 +32,11 @@ public abstract class WeatherConditionChain {
                 nextCondition.getWeather(galaxy, numberOfDay) :
                 Weather.UNDEFINED;
     }
+
+    @Override
+    public String toString() {
+        return "WeatherConditionChain{" +
+                "nextCondition=" + nextCondition +
+                '}';
+    }
 }

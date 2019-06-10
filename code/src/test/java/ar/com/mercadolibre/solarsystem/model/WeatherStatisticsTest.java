@@ -8,13 +8,13 @@ import org.junit.runners.JUnit4;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnit4.class)
-public class WeatherStadisticsTest {
+public class WeatherStatisticsTest {
 
-    private WeatherStadistics stadistic;
+    private WeatherStatistics stadistic;
 
     @Before
     public void init() {
-        stadistic = new WeatherStadistics();
+        stadistic = new WeatherStatistics();
     }
 
     @Test
@@ -63,7 +63,7 @@ public class WeatherStadisticsTest {
 
     @Test
     public void testUpdateMaximumRainDay() {
-        stadistic.updateMaximumRainDay(58);
+        stadistic.updateMaximumRainDay(58, 200);
         assertEquals(0, stadistic.getDroughtDays());
         assertEquals(0, stadistic.getRainDays());
         assertEquals(0, stadistic.getStableDays());

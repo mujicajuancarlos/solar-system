@@ -2,6 +2,7 @@ package ar.com.mercadolibre.solarsystem.utils;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.*;
@@ -36,11 +37,25 @@ public class PointUtils {
      */
     public static boolean polygonContainsPoint(Point point, List<Point> points) {
         notNull(point, "Point must not be null!");
+        Polygon polygon = getPolygon(points);
+        return polygon.contains(point);
+    }
+
+    /**
+     * @param points es una lista de @{@link List<Point>} con almenos 2 elementos
+     * @return el perimetro de los puntos
+     */
+    public static double perimeter(List<Point> points) {
         notNull(points, "Points must not be null!");
         isTrue(points.size() > 2, "Points must not be less or equals than two");
-        Polygon polygon = new Polygon();
-        points.forEach(vertex -> polygon.addPoint(vertex.x, vertex.y));
-        return polygon.contains(point);
+        long perimeter = 0;
+        List<Point> copy = new ArrayList<>();
+        copy.addAll(points);
+        copy.add(points.get(0));
+        for (int index = 0; index < points.size(); index++) {
+            perimeter += distance(copy.get(index), copy.get(index + 1));
+        }
+        return perimeter;
     }
 
     /**
@@ -60,5 +75,19 @@ public class PointUtils {
         Line2D line = new Line2D.Float(points.get(0), points.get(1));
         return points.stream().skip(2)
                 .allMatch(point -> line.ptLineDist(point) == 0.0);
+    }
+
+    private static Polygon getPolygon(List<Point> points) {
+        notNull(points, "Points must not be null!");
+        isTrue(points.size() > 2, "Points must not be less or equals than two");
+        Polygon polygon = new Polygon();
+        points.forEach(vertex -> polygon.addPoint(vertex.x, vertex.y));
+        return polygon;
+    }
+
+    private static double distance(Point point1, Point point2) {
+        double ac = Math.abs(point2.y - point1.y);
+        double cb = Math.abs(point2.x - point1.x);
+        return hypot(ac, cb);
     }
 }

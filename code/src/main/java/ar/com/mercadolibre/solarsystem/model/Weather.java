@@ -12,4 +12,12 @@ public enum Weather {
     Weather(String description) {
         this.description = description;
     }
+
+    public boolean isRain() {
+        return this == Weather.RAIN;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
