@@ -18,8 +18,8 @@ public class WeatherStatistics {
         this.maximunPerimeter = 0;
     }
 
-    public void increment(Weather weather) {
-        switch (weather) {
+    public void increment(WeatherType weatherType) {
+        switch (weatherType) {
             case RAIN:
                 rainDays++;
                 break;

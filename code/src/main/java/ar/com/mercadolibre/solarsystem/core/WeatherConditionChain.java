@@ -1,7 +1,7 @@
 package ar.com.mercadolibre.solarsystem.core;
 
 import ar.com.mercadolibre.solarsystem.model.Galaxy;
-import ar.com.mercadolibre.solarsystem.model.Weather;
+import ar.com.mercadolibre.solarsystem.model.WeatherType;
 
 import static java.util.Optional.ofNullable;
 
@@ -20,17 +20,17 @@ public abstract class WeatherConditionChain {
     }
 
     /**
-     * Esta funcionalidad retorna el clima @{@link Weather}
+     * Esta funcionalidad retorna el clima @{@link WeatherType}
      * correspondiente a la galaxia y dia especificados en los parametros
      *
      * @param galaxy      instancia de la clase @{@link Galaxy}
      * @param numberOfDay numero positivo que representa el dia
-     * @return @{@link Weather} correspondiente al dia y galaxia
+     * @return @{@link WeatherType} correspondiente al dia y galaxia
      */
-    public Weather getWeather(Galaxy galaxy, int numberOfDay) {
+    public WeatherType getWeather(Galaxy galaxy, int numberOfDay) {
         return ofNullable(nextCondition).isPresent() ?
                 nextCondition.getWeather(galaxy, numberOfDay) :
-                Weather.UNDEFINED;
+                WeatherType.UNDEFINED;
     }
 
     @Override

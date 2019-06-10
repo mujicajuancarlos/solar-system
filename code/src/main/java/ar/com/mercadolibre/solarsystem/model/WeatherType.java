@@ -1,6 +1,6 @@
 package ar.com.mercadolibre.solarsystem.model;
 
-public enum Weather {
+public enum WeatherType {
 
     DROUGHT("Sequia"),
     RAIN("Lluvia"),
@@ -9,12 +9,12 @@ public enum Weather {
 
     private final String description;
 
-    Weather(String description) {
+    WeatherType(String description) {
         this.description = description;
     }
 
     public boolean isRain() {
-        return this == Weather.RAIN;
+        return this == WeatherType.RAIN;
     }
 
     public String getDescription() {

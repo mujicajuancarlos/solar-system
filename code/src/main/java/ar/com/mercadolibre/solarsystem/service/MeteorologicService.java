@@ -1,6 +1,7 @@
 package ar.com.mercadolibre.solarsystem.service;
 
 import ar.com.mercadolibre.solarsystem.model.WeatherStatistics;
+import ar.com.mercadolibre.solarsystem.model.WeatherType;
 
 public interface MeteorologicService {
 
@@ -11,4 +12,12 @@ public interface MeteorologicService {
      * @return intancia de @{@link WeatherStatistics} con las estadisticas meteorologicas
      */
     WeatherStatistics calculateWeatherStatistics(int years);
+
+    /**
+     * Funcionalidad que calcula el tipo de clima para un dia especifico
+     *
+     * @param day día especifico a calcular
+     * @return @{@link WeatherType}
+     */
+    WeatherType calculateWeather(int day);
 }

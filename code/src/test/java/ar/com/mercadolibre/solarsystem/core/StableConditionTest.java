@@ -1,7 +1,7 @@
 package ar.com.mercadolibre.solarsystem.core;
 
 import ar.com.mercadolibre.solarsystem.model.Galaxy;
-import ar.com.mercadolibre.solarsystem.model.Weather;
+import ar.com.mercadolibre.solarsystem.model.WeatherType;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,14 +35,14 @@ public class StableConditionTest {
     public void testGetStableWeather() {
         List<Point> inLine = Arrays.asList(new Point(100, 100), new Point(200, 0), new Point(0, 200));
         when(galaxy.getCoordinatesForDay(eq(1))).thenReturn(inLine);
-        assertEquals(Weather.STABLE, stableCondition.getWeather(galaxy, 1));
+        assertEquals(WeatherType.STABLE, stableCondition.getWeather(galaxy, 1));
     }
 
     @Test
     public void testGetWeatherReturnUndefined() {
         List<Point> misaligned = Arrays.asList(new Point(100, 100), new Point(0, 50), new Point(1000, 1500));
         when(galaxy.getCoordinatesForDay(eq(1))).thenReturn(misaligned);
-        assertEquals(Weather.UNDEFINED, stableCondition.getWeather(galaxy, 1));
+        assertEquals(WeatherType.UNDEFINED, stableCondition.getWeather(galaxy, 1));
     }
 
 }

@@ -1,7 +1,7 @@
 package ar.com.mercadolibre.solarsystem.core;
 
 import ar.com.mercadolibre.solarsystem.model.Galaxy;
-import ar.com.mercadolibre.solarsystem.model.Weather;
+import ar.com.mercadolibre.solarsystem.model.WeatherType;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -22,12 +22,12 @@ public class StableCondition extends WeatherConditionChain {
     /**
      * @param galaxy      instancia de la clase @{@link Galaxy}
      * @param numberOfDay numero positivo que representa el dia
-     * @return @{@link Weather#STABLE} si los planetas se encuentran alineados no incluye al sol
+     * @return @{@link WeatherType#STABLE} si los planetas se encuentran alineados no incluye al sol
      * caso contrario ejecuta @{@link WeatherConditionChain#getWeather(Galaxy, int)}
      */
     @Override
-    public Weather getWeather(Galaxy galaxy, int numberOfDay) {
-        return planetsInLine(galaxy, numberOfDay) ? Weather.STABLE : super.getWeather(galaxy, numberOfDay);
+    public WeatherType getWeather(Galaxy galaxy, int numberOfDay) {
+        return planetsInLine(galaxy, numberOfDay) ? WeatherType.STABLE : super.getWeather(galaxy, numberOfDay);
     }
 
     private boolean planetsInLine(Galaxy galaxy, int numberOfDay) {

@@ -2,10 +2,9 @@ package ar.com.mercadolibre.solarsystem.service.impl;
 
 import ar.com.mercadolibre.solarsystem.core.WeatherConditionChain;
 import ar.com.mercadolibre.solarsystem.model.Galaxy;
-import ar.com.mercadolibre.solarsystem.model.Weather;
 import ar.com.mercadolibre.solarsystem.model.WeatherStatistics;
+import ar.com.mercadolibre.solarsystem.model.WeatherType;
 import ar.com.mercadolibre.solarsystem.service.MeteorologicService;
-import ar.com.mercadolibre.solarsystem.utils.DateUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static ar.com.mercadolibre.solarsystem.utils.DateUtils.getDaysFrom;
 import static ar.com.mercadolibre.solarsystem.utils.PointUtils.perimeter;
 
 @Service
@@ -51,17 +51,27 @@ public class DefaultMeteorologicService implements MeteorologicService {
     public WeatherStatistics calculateWeatherStatistics(int years) {
         WeatherStatistics statistics = new WeatherStatistics();
         IntStream
-                .range(0, DateUtils.getDaysFrom(startDate, years))
-                .forEach(value -> evaluateDayWeather(statistics, value));
+                .range(0, getDaysFrom(startDate, years))
+                .forEach(day -> evaluateDayWeather(statistics, day));
         return statistics;
     }
 
-    private void evaluateDayWeather(WeatherStatistics statistics, int value) {
-        Weather weather = weatherCondition.getWeather(galaxy, value);
-        statistics.increment(weather);
-        if (weather.isRain()) {
-            List<Point> points = galaxy.getCoordinatesForDay(value);
-            statistics.updateMaximumRainDay(value, perimeter(points));
+    /**
+     * {@inheritDoc}
+     *
+     * @see @{@link MeteorologicService#calculateWeather(int)}
+     */
+    @Override
+    public WeatherType calculateWeather(int day) {
+        return weatherCondition.getWeather(galaxy, day);
+    }
+
+    private void evaluateDayWeather(WeatherStatistics statistics, int day) {
+        WeatherType weatherType = weatherCondition.getWeather(galaxy, day);
+        statistics.increment(weatherType);
+        if (weatherType.isRain()) {
+            List<Point> points = galaxy.getCoordinatesForDay(day);
+            statistics.updateMaximumRainDay(day, perimeter(points));
         }
     }
 }

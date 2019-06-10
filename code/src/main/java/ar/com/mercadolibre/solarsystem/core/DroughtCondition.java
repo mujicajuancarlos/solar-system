@@ -1,7 +1,7 @@
 package ar.com.mercadolibre.solarsystem.core;
 
 import ar.com.mercadolibre.solarsystem.model.Galaxy;
-import ar.com.mercadolibre.solarsystem.model.Weather;
+import ar.com.mercadolibre.solarsystem.model.WeatherType;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -26,12 +26,12 @@ public class DroughtCondition extends WeatherConditionChain {
     /**
      * @param galaxy      instancia de la clase @{@link Galaxy}
      * @param numberOfDay numero positivo que representa el dia
-     * @return @{@link Weather#DROUGHT} si el sol y los planetas se encuentran alineados
+     * @return @{@link WeatherType#DROUGHT} si el sol y los planetas se encuentran alineados
      * caso contrario ejecuta @{@link WeatherConditionChain#getWeather(Galaxy, int)}
      */
     @Override
-    public Weather getWeather(Galaxy galaxy, int numberOfDay) {
-        return allInLine(galaxy, numberOfDay) ? Weather.DROUGHT : super.getWeather(galaxy, numberOfDay);
+    public WeatherType getWeather(Galaxy galaxy, int numberOfDay) {
+        return allInLine(galaxy, numberOfDay) ? WeatherType.DROUGHT : super.getWeather(galaxy, numberOfDay);
     }
 
     private boolean allInLine(Galaxy galaxy, int numberOfDay) {

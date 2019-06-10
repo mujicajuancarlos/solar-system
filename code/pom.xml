@@ -37,28 +37,15 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.47</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.cloud.sql</groupId>
-            <artifactId>mysql-socket-factory-connector-j-8</artifactId>
-            <version>1.0.13</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>1.2.0.Final</version>
         </dependency>
-        <!--<dependency>
-            <groupId>com.google.cloud.sql</groupId>
-            <artifactId>jdbc-socket-factory-core</artifactId>
-            <version>1.0.14-SNAPSHOT</version>
-        </dependency>-->
     </dependencies>
 
     <build>
