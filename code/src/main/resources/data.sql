@@ -1,5 +1,5 @@
 
-drop table WEATHER;
+drop table IF EXISTS WEATHER;
 
 create table WEATHER
 (
