@@ -1,0 +1,11 @@
+galaxy:
+  planets:
+    - name: Ferengi
+      velocity: -1
+      distance: 500
+    - name: Betasoide
+      velocity: -3
+      distance: 2000
+    - name: Vulcano
+      velocity: 5
+      distance: 1000
