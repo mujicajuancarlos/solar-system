@@ -21,13 +21,14 @@ public class RegistryWeatherTask {
     @Autowired
     private WeatherService weatherService;
 
-    @Scheduled(cron = "${solar-system.cron-expression}")
+    //@Scheduled(cron = "${solar-system.cron-expression}")
+    @Scheduled(fixedRate = 1000 * 60 * 60 * 24)
     public void registryNextWeather() {
         LocalDateTime date = LocalDateTime.now();
         Date endDate = DateUtils.plusYears(new Date(), 10);
         logger.info("Start task :: Time - {}", dateTimeFormatter.format(date));
         weatherService.registryWeather(endDate);
-        logger.info("Start task :: Time - {}", dateTimeFormatter.format(date));
+        logger.info("End task :: Time - {}", dateTimeFormatter.format(date));
     }
 
 }
