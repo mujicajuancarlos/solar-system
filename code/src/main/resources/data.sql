@@ -1,7 +1,10 @@
+
+drop table WEATHER;
+
 create table WEATHER
 (
 	DAY int not null,
-	WEATHER int not null
+	WEATHER varchar(20) not null
 );
 
 create unique index WEATHER_DAY_uindex

@@ -51,7 +51,6 @@ public class DefaultWeatherService implements WeatherService {
     public void registryWeather(Date endDate) {
         int lastDate = getDaysBetween(startDate, endDate);
         IntStream.range(0, lastDate + 1)
-                .parallel()
                 .forEach(day -> {
                     if (!weatherRepository.findByDay(day).isPresent()) {
                         WeatherType type = meteorologicService.calculateWeather(day);
@@ -67,7 +66,7 @@ public class DefaultWeatherService implements WeatherService {
      */
     @Override
     public Weather createWeather(Weather weather) {
-        LOGGER.info("Inserting weather " + weather.toString());
+        // LOGGER.info("Inserting weather " + weather.toString());
         return weatherRepository.save(weather);
     }
 }
