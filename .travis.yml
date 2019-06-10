@@ -9,5 +9,4 @@ before_script:
   - cd code
   - mvn clean install
 script:
-  - cd code
   - mvn test
